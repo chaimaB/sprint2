@@ -1,0 +1,46 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+
+<div class="login">
+    <div class="main-agileits">
+        <div class="form-w3agile">
+            <h3>Login</h3>
+<form action="{{ path("fos_user_security_check") }}" method="post">
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+
+
+    <div class="key">
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+    <label for="username">{{ 'security.login.username'|trans }}</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}"  />
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="key">
+        <i class="fa fa-lock" aria-hidden="true"></i>
+    <label for="password">{{ 'security.login.password'|trans }}</label>
+    <input type="password" id="password" name="_password" required="required" autocomplete="current-password"   onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"  />
+        <div class="clearfix"></div>
+    </div>
+
+    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    <label for="remember_me"> {{ 'security.login.remember_me'|trans }}</label>
+
+    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+
+
+</form>
+        </div>
+        <div class="forg">
+            <a href="#" class="forg-left">Forgot Password</a>
+            <a href="registered.html" class="forg-right">Register</a>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

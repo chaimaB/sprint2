@@ -1,0 +1,9 @@
+admin_homepage:
+    path:     /
+    defaults: { _controller: AdminBundle:Default:index }
+Events_homepage_admin:
+    path:     /Events_homepage_admin
+    defaults: { _controller: AdminBundle:Events:Events }
+affichage:
+    path:     /affichage
+    defaults: { _controller: AdminBundle:Events:admin }

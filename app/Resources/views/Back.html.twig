@@ -64,7 +64,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="table.html">
+                    <a href="{{ path('affichage') }}">
                         <i class="pe-7s-note2"></i>
                         <p>Table List</p>
                     </a>
@@ -102,7 +102,7 @@
             </ul>
         </div>
     </div>
-
+{% block container %}
     <div class="main-panel">
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
@@ -384,7 +384,7 @@
                 </div>
             </div>
         </div>
-
+{% endblock %}
 
         <footer class="footer">
             <div class="container-fluid">

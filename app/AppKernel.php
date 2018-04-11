@@ -17,6 +17,15 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new BaseBundle\BaseBundle(),
+            new EventBundle\EventBundle(),
+            new Mgilet\NotificationBundle\MgiletNotificationBundle(),
+            new Nomaya\SocialBundle\NomayaSocialBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new AdminBundle\AdminBundle(),
+            new Discutea\DForumBundle\DForumBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

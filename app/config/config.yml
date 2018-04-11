@@ -3,15 +3,17 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@BaseBundle/Resources/config/services.yml" }
+    - { resource: "@EventBundle/Resources/config/services.yml" }
+    - { resource: "@AdminBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: fr
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -76,3 +78,82 @@ fos_user:
     from_email:
             address: "%%"
             sender_name: "%%"
+
+# Nomaya Configuration
+nomaya_social:
+    buttons:
+        facebook:
+            url:            "www.facebook.com"
+            locale:         "fr_FR"
+            send:           false
+            width:          300
+            showFaces:      false
+            layout:         "button_count"
+        twitter:
+            url:            null
+            locale:         "fr"
+            message:        "Je veux partager ça avec vous"
+            text:           "Tweet"
+            via:            "L'Equipe cartedevisitevirtuelle.fr"
+            tag:            "ttot"
+        googleplus:
+            url:            null
+            locale :        "fr"
+            size :          "medium"
+            annotation :    "bubble"
+            width :         300
+        linkedin:
+            url:            null
+            locale:         "fr_FR"
+            counter:        "right"
+        pinterest:
+            url:            null
+    theme:                  'default' # optional
+
+# PDF snappyy
+knp_snappy:
+    pdf:
+        enabled:    true
+        # If you have wkhtmltopdf as an environment variable you don't need to provide the
+        # full path to the executable, use it in the same way as you use in the console
+        #binary:  "wkhtmltopdf"
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
+        options:    []
+    image:
+        enabled:    true
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
+        options:    []
+
+doctrine:
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        resolve_target_entities:
+            Symfony\Component\Security\Core\User\UserInterface: Namespace\BaseBundle\Entity\User
+
+
+# Configuration for knp paginator: don't forget to customize page_name
+knp_paginator:
+    page_range: 4
+    default_options:
+        page_name: p
+        sort_field_name: sort
+        sort_direction_name: direction
+        distinct: true
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig
+
+# Configuration for discutea forum
+discutea_forum:
+    preview:
+        enabled: true
+    knp_paginator:
+        page_name: p  #see knp_paginator.default_option.page_name
+        topics:
+            enabled: true
+            per_page: 10
+        posts:
+            enabled: true
+            per_page: 10
